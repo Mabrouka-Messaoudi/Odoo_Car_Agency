@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id ="view_agency_model_tree">
+        <field name="name">car_agency.agency.tree</field>
+        <field name="model">car_agency.agency</field>
+        <field name="arch" type="xml">
+         <tree>
+
+             <field name="responsible_person"/>
+             <field name="agency_list_brand"/>
+             <field name="agency_list_cars"/>
+             <field name="agency"/>
+
+
+
+         </tree>
+
+        </field>
+    </record>
+    <record model="ir.ui.view" id ="view_agency_model_form">
+        <field name="name">car_agency.agency.form</field>
+        <field name="model">car_agency.agency</field>
+        <field name="arch" type="xml">
+         <form>
+             <sheet>
+                 <div name="button_box" class="oe_stat_button">
+                     <button name="action_view_brands" string="View Brands" type="object" class="oe_stat_button"
+                     icon="fa-user"/>
+                 </div>
+                 <group>
+                     <field name="agency"/>
+                     <field name="responsible_person"/>
+                     <field name="agency_list_cars"/>
+                     <field name="phone"/>
+
+                     <field name="tag_ids" widget="many2many_tags"/>
+
+                 </group>
+             </sheet>
+              <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+              </div>
+
+
+         </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id ="view_agency_model_search">
+        <field name="name">car_agency.agency.search</field>
+        <field name="model">car_agency.agency</field>
+        <field name="arch" type="xml">
+          <search>
+            <group expand="0" string="Group by">
+               <filter name="group_by_responsible" string="Responsible Person"  context="{'group_by':'responsible_person'}"/>
+            </group>
+          </search>
+        </field>
+    </record>
+
+    <record id="action_agency" model="ir.actions.act_window">
+        <field name="name">car_agency.agency</field>
+        <field name="res_model">car_agency.agency</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

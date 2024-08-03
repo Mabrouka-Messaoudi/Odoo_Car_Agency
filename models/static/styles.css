@@ -1,0 +1,19 @@
+/* Styles for car_brand module */
+
+/* Styling for the name field */
+.car-brand-name {
+    font-weight: bold;
+    color: #3366ff; /* Blue color */
+}
+
+/* Styling for the description field */
+.car-brand-description {
+    font-style: italic;
+    color: #666666; /* Gray color */
+}
+
+/* Styling for the image field */
+.car-brand-image {
+    max-width: 100px; /* Limiting image width */
+    border-radius: 50%; /* Rounded corners for circular images */
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_car_damage_wizard_form" model="ir.ui.view">
+        <field name="name">car.damage.wizard.form</field>
+        <field name="model">car.damage.wizard</field>
+        <field name="inherit_id" ref=""/>
+
+        <field name="arch" type="xml">
+
+            <form string="Damage Car">
+                <sheet>
+                    <group>
+                        <field name="note" widget="text_area"/>
+                        <button name="action_save_damage_note" type="object" string="Save"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_car_damage_wizard" model="ir.actions.act_window">
+        <field name="name">Damage Car</field>
+        <field name="res_model">car.damage.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

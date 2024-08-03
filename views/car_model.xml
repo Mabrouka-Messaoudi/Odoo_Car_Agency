@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_car_agency_model_tree">
+        <field name="name">car_agency.car.tree</field>
+        <field name="model">car_agency.car</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="registration_number"/>
+                <field name="startdate"/>
+                <field name="model"/>
+                <field name="enddate"/>
+                <field name="mileage"/>
+                <field name="state"/>
+                <field name="agency_id"/>
+                <field name="brand_id"/>
+                <field name="duration_of_rent"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_car_agency_model_form">
+        <field name="name">car_agency.car.form</field>
+        <field name="model">car_agency.car</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"/>
+                    <button id="button_available" name="action_available" string="Available" class="btn-primary"
+                            type="object"/>
+                    <button id="button_rented" name="action_rented" string="Rented" class="btn-primary" type="object"/>
+                    <button name="action_open_damage_wizard" string="Damaged" type="object"
+                            invisible="state == 'damaged'"/>
+
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_stat_button">
+                        <button name="action_view_requests" string="View Requests" type="object" class="oe_stat_button"
+                                icon="fa-user"/>
+                    </div>
+                    <group>
+                        <field name="registration_number"/>
+                        <field name="startdate"/>
+                        <field name="model"/>
+                        <field name="enddate"/>
+                        <field name="mileage"/>
+                        <field name="agency_id"/>
+                        <field name="brand_id"/>
+                        <field name="state" invisible="state == 'damaged'"/>
+                        <field name="note" invisible="state != 'damaged'"/>
+                        <field name="duration_of_rent"/>
+
+
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_car_agency_model_search">
+        <field name="name">car_agency.car.search</field>
+        <field name="model">car_agency.car</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="registration_number"/>
+                <field name="model"/>
+                <filter name="state_filter_av" string="Available" domain="[('state','=','available')]"/>
+                <filter name="state_filter_re" string="Rented" domain="[('state','=','rented')]"/>
+            </search>
+
+        </field>
+    </record>
+
+    <record id="view_car_agency_model_kanban" model="ir.ui.view">
+        <field name="name">car_agency.car.kanban</field>
+        <field name="model">car_agency.car</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="registration_number"/>
+                <field name="startdate"/>
+                <field name="model"/>
+                <field name="enddate"/>
+                <field name="mileage"/>
+                <field name="state"/>
+                <field name="agency_id"/>
+                <field name="brand_id"/>
+                <templates>
+
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li>
+                                        <field name="registration_number"/>
+                                    </li>
+                                    <li>
+                                        <field name="startdate"/>
+                                    </li>
+                                    <li>
+                                        <field name="model"/>
+                                    </li>
+                                    <li>
+                                        <field name="enddate"/>
+                                    </li>
+                                    <li>
+                                        <field name="mileage"/>>
+                                    </li>
+                                    <li>
+                                        <field name="state"/>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_car_agency_model_graph" model="ir.ui.view">
+        <field name="name">car_agency.car.graph</field>
+        <field name="model">car_agency.car</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="registration_number" type="row"/>
+                <field name="agency_id" type="measure"/>
+            </graph>
+        </field>
+
+    </record>
+    <record id="view_car_agency_model_calendar" model="ir.ui.view">
+        <field name="name">car_agency.car.calendar</field>
+        <field name="model">car_agency.car</field>
+        <field name="arch" type="xml">
+            <calendar create="0" mode="month" date_start="startdate" color="registration_number">
+                <field name="model"/>
+                <field name="registration_number"/>
+            </calendar>
+        </field>
+    </record>
+    <record id="action_car" model="ir.actions.act_window">
+        <field name="name">Car</field>
+        <field name="res_model">car_agency.car</field>
+        <field name="view_mode">tree,form,kanban,graph,calendar</field>
+    </record>
+</odoo>

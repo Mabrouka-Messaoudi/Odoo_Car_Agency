@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="test_car_state" model="ir.cron">
+            <field name="name">Check car status</field>
+            <field name="model_id" ref="model_car_agency_request"/>
+            <field name="state">code</field>
+            <field name="code">model._check_car_rental_status()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>

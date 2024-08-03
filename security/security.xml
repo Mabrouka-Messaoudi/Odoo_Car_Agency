@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category"  id="module_category_car_agency">
+        <field name="name">Car Agency</field>
+        <field name="description">Category For Car Agency</field>
+    </record>
+
+    <record id="group_agency_car_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_category_car_agency"/>
+
+    </record>
+    <record id="group_agency_car_customer" model="res.groups">
+        <field name="name">Customer</field>
+        <field name="category_id" ref="module_category_car_agency"/>
+
+    </record>
+
+    <record id="group_agency_car_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_car_agency"/>
+
+    </record>
+
+<!--    record rule for the user -->
+    <record id="access_for_requests_user" model="ir.rule">
+        <field name="name">See Only His Requests</field>
+        <field name="model_id" ref="car_agency.model_car_agency_request"/>
+        <field name="domain_force">[('create_uid','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('group_agency_car_user'))]"/>
+
+    </record>
+<!--    record rule for the manager -->
+    <record id="access_for_request_manager" model="ir.rule">
+        <field name="name">See His agency requests</field>
+        <field name="model_id" ref="car_agency.model_car_agency_request"/>
+<!--        <field name="domain_force">[('car.agency_id.responsible_person.name','=',user.name)]</field>-->
+        <field name="domain_force">[]</field>
+        <field name="groups" eval="[(4,ref('group_agency_car_manager'))]"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>

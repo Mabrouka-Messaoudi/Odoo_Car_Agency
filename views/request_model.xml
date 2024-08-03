@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_car_agency_request_tree">
+        <field name="name">car_agency.request.tree</field>
+        <field name="model">car_agency.request</field>
+        <field name="arch" type="xml">
+            <tree>
+
+
+                <field name="car"/>
+                <field name="name"/>
+                <field name="responsible_person"/>
+                <field name="agency"/>
+
+
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_car_agency__request_form">
+        <field name="name">car_agency.request.form</field>
+        <field name="model">car_agency.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button id="button_sent" name="action_send" type="object" string="Send" class="btn-primary"
+                            invisible="state == 'confirm' or state == 'refuse' or state == 'cancel'"
+                            groups="car_agency.group_agency_car_user"/>
+                    <button id="button_canceled" name="action_cancel" type="object" string="Cancel" class="btn-primary"
+                            invisible="state == 'confirm' or state == 'refuse' "
+                            groups="car_agency.group_agency_car_user"/>
+                    <button id="button_confirm" name="action_confirm" type="object" string="confirm" class="btn-primary"
+                            invisible="state == 'cancel' or state == 'refuse'"
+                            groups="car_agency.group_agency_car_manager"/>
+
+                    <button id="button_refuse" name="action_refuse" type="object" string="refuse" class="btn-primary"
+                            invisible="state == 'cancel' or state == 'confirm'"
+                            groups="car_agency.group_agency_car_manager"/>
+
+
+                </header>
+                <sheet>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="car"/>
+                        <field name="responsible_person"/>
+                        <field name="agency"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="renter_id"/>
+
+
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_request" model="ir.actions.act_window">
+        <field name="name">request</field>
+        <field name="res_model">car_agency.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+
+
+

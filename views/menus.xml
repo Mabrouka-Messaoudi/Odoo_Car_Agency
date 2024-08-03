@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="main_car_agency_root" name="Car Agency" sequence="10"/>
+    <menuitem id="submenu_carbrand" name="Car Brand" parent="main_car_agency_root" sequence="20" action="action_car_brand"/>
+    <menuitem id="submenu_car" name="Car" parent="main_car_agency_root" sequence="30" action="action_car"/>
+    <menuitem id="submenu_agency" name="Agency" parent="main_car_agency_root" action="action_agency"/>
+    <menuitem id="submenu_customer" name="Customer" parent="main_car_agency_root" action="action_customer"/>
+    <menuitem id="submenu_request" name="Requests" parent="main_car_agency_root" action="action_request"/>
+</odoo>

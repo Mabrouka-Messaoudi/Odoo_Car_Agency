@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Email template for new users -->
+        <record id="rental_mail_template" model="mail.template">
+            <field name="name">Rental Template</field>
+            <field name="model_id" ref="car_agency.model_car_agency_request"/>
+            <field name="subject">Rental Request Confirmation</field>
+            <field name="email_from">{{ (user.email) }}</field>
+            <field name="email_to">{{ object.renter_id.email }}</field>
+
+
+            <field name="body_html" type="html">
+                <body>
+                    <div class="header">
+                        <t t-out="object.name"></t>
+                    </div>
+                    <div class="content">
+                        <p>Dear <t t-out="object.renter_id.name"></t>,</p>
+                        <p>we are pleased to inform you that your request has been successfully confirmed!</p>
+                        <p>
+                            <strong>Request Name :</strong> <t t-out="object.name"></t><br/>
+                            <strong>Car Model :</strong> <t t-out="object.car.model"></t><br/>
+                            <strong>Start Date :</strong> <t t-out="object.start_date"></t><br/>
+                            <strong>End Date :</strong> <t t-out="object.end_date"></t><br/>
+
+                        </p>
+                        <p>Thank you for choosing our service. If you have any questions or need further assistance, please do not hesitate to contact us.</p>
+                        <p>Best regards,<br/>The <t t-out="object.agency"></t> Team</p>
+
+                    </div>
+                </body>
+            </field>
+<!--            <field name="report_template" ref="car_agency.car_agency_request_report_temp"/>-->
+<!--            <field name="report_name">Request_{{ object.name }}_name</field>-->
+        </record>
+    </data>
+</odoo>

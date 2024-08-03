@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_car_agency_request">
+        <t t-call="web.html_container">
+             <t t-foreach="docs" t-as="doc">
+                 <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Car Agency Request</h2>
+                        <p>
+                            <strong>Request:</strong><br/><span t-field="doc.name"></span>
+                        </p>
+                        <p>
+                            <strong>Car Model:</strong> <span t-field="doc.car.model"></span><br/>
+                            <strong>Agency:</strong> <span t-field="doc.agency"></span><br/>
+                            <strong>Request Start Date:</strong> <span t-field="doc.start_date"></span><br/>
+                            <strong>Request End Date:</strong> <span t-field="doc.end_date"></span><br/>
+                        </p>
+                    </div>
+                 </t>
+             </t>
+        </t>
+    </template>
+
+    <data>
+        <record id="car_agency_request_report_temp" model="ir.actions.report">
+            <field name="name">Car Request</field>
+            <field name="model">car_agency.request</field>
+            <field name="report_name">car_agency.report_car_agency_request</field>
+            <field name="report_file">car_agency.report_car_agency_request</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="binding_model_id" ref="car_agency.model_car_agency_request"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+
+</odoo>
+
